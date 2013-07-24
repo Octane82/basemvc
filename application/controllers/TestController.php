@@ -20,10 +20,24 @@ class TestController extends BaseController{
 	}
 
 
-    public function two($var){
+    public function two($id, $search){
         echo '<pre>'.print_r(__METHOD__, 1).'</pre>';
         echo '<pre>'.print_r(func_get_args(), 1).'</pre>';  //функция func_get_args принимает все переменные принимаемые функцией
-        echo '<b>'.$var.'</b>';
+        echo '<b>'.$id.'</b><br />';
+        echo '<b>'.$search.'</b><br />';
     }
+
+
+    public function post(){
+        $post = new Post();
+       // var_dump($post->post());
+
+        $data = $post->post();
+
+        $this->render('post', array('data'=>$data));
+
+    }
+
+
 
 }

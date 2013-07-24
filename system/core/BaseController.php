@@ -12,57 +12,9 @@ abstract class BaseController{
 	*/
 	public function __construct(){
 		$this->_registry = Registry::getInstance();
-		
+
 	}
 	
-	/**
-	*	Отображение вида с загрузкой layouts
-	* @param name	название файла вида
-	* @param vars	массив переменных, передаваемых в вид
-	*/
-/*	public function render($name, array $vars = null){
-        $layoutfile = SITE_PATH.'application/views/layouts/'.$this->layout.'.php';
-		$file = SITE_PATH.'application/views/'.$name.'.php';
-		if(is_readable($file)){
-
-            ob_start();
-           // $content = file_get_contents($file);
-            require($file);
-
-
-			if(isset($vars)){
-				extract($vars);		//переводим массив $vars в переменные по значению
-			}
-
-            $vrs = 'iygitigtigt7iyg';
-            $content = ob_get_contents();
-            ob_end_clean();
-
-			require($layoutfile);
-          //  require($file);
-			return true;
-		}
-		throw new exception('Vid otsuststvuet');
-	}   */
-
-
-
-    /**
-     *	Отображение вида, без загрузки layouts
-     * @param name	название файла вида
-     * @param vars	массив переменных, передаваемых в вид
-     */
-/*    public function renderPartial($name, array $vars = null){
-        $file = SITE_PATH.'application/views/'.$name.'.php';
-        if(is_readable($file)){
-            if(isset($vars)){
-                extract($vars);		//переводим массив $vars в переменные по значению
-            }
-            require($file);
-            return true;
-        }
-        throw new exception('Vid otsuststvuet');
-    }   */
 
 
     // получить отренедеренный шаблон с параметрами $params
@@ -93,6 +45,54 @@ abstract class BaseController{
     function render($template, $params = array()){
         echo $this->fetch($template, $params);
     }
+
+
+    //////////////////////////////////////////////////////////////
+    /**
+     *	Отображение вида с загрузкой layouts
+     * @param name	название файла вида
+     * @param vars	массив переменных, передаваемых в вид
+     */
+    /*	public function render($name, array $vars = null){
+            $layoutfile = SITE_PATH.'application/views/layouts/'.$this->layout.'.php';
+            $file = SITE_PATH.'application/views/'.$name.'.php';
+            if(is_readable($file)){
+                ob_start();
+               // $content = file_get_contents($file);
+                require($file);
+                if(isset($vars)){
+                    extract($vars);		//переводим массив $vars в переменные по значению
+                }
+                $vrs = 'iygitigtigt7iyg';
+                $content = ob_get_contents();
+                ob_end_clean();
+                require($layoutfile);
+              //  require($file);
+                return true;
+            }
+            throw new exception('Vid otsuststvuet');
+        }   */
+
+    /**
+     *	Отображение вида, без загрузки layouts
+     * @param name	название файла вида
+     * @param vars	массив переменных, передаваемых в вид
+     */
+    /*    public function renderPartial($name, array $vars = null){
+            $file = SITE_PATH.'application/views/'.$name.'.php';
+            if(is_readable($file)){
+                if(isset($vars)){
+                    extract($vars);		//переводим массив $vars в переменные по значению
+                }
+                require($file);
+                return true;
+            }
+            throw new exception('Vid otsuststvuet');
+        }   */
+
+
+
+
 
 
 }
