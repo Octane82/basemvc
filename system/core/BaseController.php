@@ -7,18 +7,29 @@ abstract class BaseController{
 
 	protected $_registry;
 
+    public $application;        //свойство хранит главный экземпляр приложения(создаётся в конструкторе)
+
+
 	/**
 	*	Регистрируем класс BaseController
 	*/
 	public function __construct(){
 		$this->_registry = Registry::getInstance();
-
+        $this->application = new Application();         //создание экземпляра приложения(глобальные данные)
 	}
 	
 
 
     // получить отренедеренный шаблон с параметрами $params
     function fetchPartial($template, $params = array()){
+        extract($params);
+        ob_start();
+        include SITE_PATH.'application/views/'.$this->application->idController().'/'.$template.'.php';
+        return ob_get_clean();
+    }
+
+    // получить отренедеренный шаблон с параметрами $params для fetch()
+    function getLayoutFile($template, $params = array()){
         extract($params);
         ob_start();
         include SITE_PATH.'application/views/'.$template.'.php';
@@ -36,7 +47,7 @@ abstract class BaseController{
     // шаблон с параметрами $params
     function fetch($template, $params = array()){
         $content = $this->fetchPartial($template, $params);
-        return $this->fetchPartial('layouts/'.$this->layout, array('content' => $content));
+        return $this->getLayoutFile('layouts/'.$this->layout, array('content' => $content));
     }
 
 
@@ -45,6 +56,10 @@ abstract class BaseController{
     function render($template, $params = array()){
         echo $this->fetch($template, $params);
     }
+
+
+
+
 
 
     //////////////////////////////////////////////////////////////

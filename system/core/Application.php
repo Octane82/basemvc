@@ -1,54 +1,43 @@
 <?php
 //main application file
 
-class Application{
-
-    public $hostname = '';
-
-    public $db_login = '';
-
-    public $db_password = '';
-
-    public $db_name = '';
+class Application extends Request{
+    /**
+     * @var string
+     *  Application  -- это базовый класс приложения
+     * Приложение служит в качестве глобального контекста
+     */
 
 
-
- /*   public function _construct(){
-    $config = include  SITE_PATH.'system/config/config.php';
-
-        $this->hostname     = $config['database']['hostname'];
-        $this->db_login     = $config['database']['login'];
-        $this->db_password  = $config['database']['password'];
-       // $this->db_name      = $config['database']['dbname'];
-        $this->db_name = 'sqltest';
-    } */
+    public $connection;         //PDO подключение к БД
 
 
+
+    /**
+     * Инициализация подключения к БД
+     */
     public function init(){
         $config = include  SITE_PATH.'system/config/config.php';
 
-        $this->hostname     = $config['database']['hostname'];
-        $this->db_login     = $config['database']['login'];
-        $this->db_password  = $config['database']['password'];
-        $this->db_name      = $config['database']['dbname'];
+        $host = $config['database']['hostname'];
+        $db = $config['database']['dbname'];
+        $user = $config['database']['login'];
+        $pass = $config['database']['password'];
+
+        $this->connection = new PDO("mysql:host=$host; dbname=$db", $user, $pass);
     }
 
 
 
-    public function setHostname(){
-        return $this->hostname;
+    /**
+     * @return mixed|string     возвращает название контроллера
+     */
+    public function idController(){
+        return $this->getController();
     }
 
-    public function setDbLogin(){
-        return $this->db_login;
-    }
-
-    public function setDbPassword(){
-        return $this->db_password;
-    }
-
-    public function setDbName(){
-        return $this->db_name;
+    public function dbConnection(){
+        return $this->connection;
     }
 
 

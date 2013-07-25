@@ -14,9 +14,8 @@ class TestController extends BaseController{
 //	$vars['header'] = 'SUPER HEADER';
         $vars = array('one', 'two', 'three');
         $title = 'Super mega title';
-//	$this->render('article', $vars);
-        //$this->renderPartial('article');
-        $this->render('article', array('title'=>$title, 'vars'=>$vars));
+
+        $this->render('articletest', array('title'=>$title, 'vars'=>$vars));
 	}
 
 
