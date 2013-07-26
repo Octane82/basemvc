@@ -3,6 +3,12 @@
 
 class Router{
 
+    /**
+     * @param Request $request
+     * @throws Exception
+     *
+     * TODO     Добавить исключения на возможное отсутствие метода и (параметров ???????)
+     */
     public static function route(Request $request){
 
         $controller = $request->getController().'Controller';       //Получаем название контроллера из объекта request

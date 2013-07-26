@@ -16,6 +16,8 @@ class TestController extends BaseController{
         $title = 'Super mega title';
 
         $this->render('articletest', array('title'=>$title, 'vars'=>$vars));
+
+
 	}
 
 
@@ -27,14 +29,16 @@ class TestController extends BaseController{
     }
 
 
-    public function post(){
-        $post = new Post();
-       // var_dump($post->post());
+    public function post($price){
 
-        $data = $post->post();
+        if(isset($price)){
+            $post = new Post();
+            $data = $post->printpost($price);
+        }
 
         $this->render('post', array('data'=>$data));
 
+        var_dump($_POST);
     }
 
 

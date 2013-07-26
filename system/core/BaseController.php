@@ -7,7 +7,7 @@ abstract class BaseController{
 
 	protected $_registry;
 
-    public $application;        //свойство хранит главный экземпляр приложения(создаётся в конструкторе)
+
 
 
 	/**
@@ -15,16 +15,16 @@ abstract class BaseController{
 	*/
 	public function __construct(){
 		$this->_registry = Registry::getInstance();
-        $this->application = new Application();         //создание экземпляра приложения(глобальные данные)
 	}
 	
 
 
     // получить отренедеренный шаблон с параметрами $params
     function fetchPartial($template, $params = array()){
+        $idController = Application::getInstance()->controller();   //текущий контроллер
         extract($params);
         ob_start();
-        include SITE_PATH.'application/views/'.$this->application->idController().'/'.$template.'.php';
+        include SITE_PATH.'application/views/'.$idController.'/'.$template.'.php';
         return ob_get_clean();
     }
 

@@ -16,7 +16,6 @@ class Request{
 
         $this->_controller = ($c = array_shift($parts))? $c : 'index';      //Присваиваем свойству название контроллера
         $this->_method = ($c = array_shift($parts))? $c : 'index';           //Присваиваем свойству название метода
-       // $this->_args = (isset($parts[0]))? $parts : array();
         if(!empty($parts)){
             $keys = $values = array();
             for($i=0, $cnt=count($parts); $i<$cnt; $i++){
@@ -30,8 +29,6 @@ class Request{
             $this->_args = array_combine($keys, $values);
         }else
             $this->_args = array();
-
-
     }
 
 
