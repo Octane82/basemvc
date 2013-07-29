@@ -1,5 +1,5 @@
 <h1 style="color: red">First article in VIEW</h1>
-<h1>ARTICLE TEST</h1>
+
 <p>
     Во время встречи с инвесторами исполнительный директор компании Ubisoft Ив Гиймо
     (Yves Guillemot) заявил, что количество предварительных заказов на PS4 и Xbox One очень высоко.
@@ -7,7 +7,7 @@
 </p>
 
 <h1 style="color: greenyellow"><?php echo $title; ?></h1>
-
+<br />
 <?php $this->renderPartial('partial');?>
 <br />
 <p></p>
