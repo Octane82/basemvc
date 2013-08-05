@@ -1,9 +1,8 @@
 <?php
 //bootstrap file
 
+
 //подключаем файлы ядра
-
-
 require_once SITE_PATH.'system/core/Registry.php';
 require_once SITE_PATH.'system/core/Request.php';
 require_once SITE_PATH.'system/core/Router.php';
@@ -15,9 +14,17 @@ require_once SITE_PATH.'system/core/ErrorController.php';
 require_once SITE_PATH.'system/core/BaseModel.php';
 
 
-//Автозагрузка моделей
-function __autoload($class){
-    require_once SITE_PATH.'application/models/'.$class.'.php';
+//require_once SITE_PATH.'system/lib/DB.php';                   //можно явно подключить библиотеку работы с БД, или (см. ниже)
+
+
+//Автозагрузка классов
+set_include_path(get_include_path()                          //Функция несколько путей для include (замена базовой дирректории)
+        .PATH_SEPARATOR.SITE_PATH.'application/models'
+        .PATH_SEPARATOR.SITE_PATH.'system/lib');
+    //    .PATH_SEPARATOR.'application/views');
+
+function __autoload($class){                                //TODO: заменить на spl_autoload_register
+        require_once $class.'.php';
 }
 
 

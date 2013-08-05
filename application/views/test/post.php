@@ -11,4 +11,6 @@
 <?php endif; ?>
 
 
+<?php echo HTML::link('Yandex link', 'http://yandex.ru'); ?>
+
 <?php //var_dump($data); ?>

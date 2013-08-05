@@ -11,12 +11,6 @@ class Application{
 
     private static $_instance;
 
-
-    public $connection;         //PDO подключение к БД
-
-    public $sql;                //Выражение SQL
-
-
     private function __construct(){}
     private function __clone(){}
 
@@ -38,38 +32,6 @@ class Application{
         $request = new Request();
         return $request->getController();
     }
-
-    /**
-     * @return $this        при помощи return $this создаём цепочку вызовов методов
-     */
-    public function db(){
-       $config = include  SITE_PATH.'system/config/config.php';
-       $host = $config['database']['hostname'];
-       $db = $config['database']['dbname'];
-       $user = $config['database']['login'];
-       $pass = $config['database']['password'];
-
-       $this->connection = new PDO("mysql:host=$host; dbname=$db", $user, $pass);
-       return $this;
-    }
-
-    /**
-     * @param $sql      выражение sql
-     * @return $this
-     */
-    public function createCommand($sql){
-        $this->sql = $sql;
-        return $this;
-    }
-
-    /**
-     * @return mixed    возвращаем массив выборки SELECT
-     */
-    public function query(){
-        $resarr = $this->connection->query($this->sql);          //$con->query($sql);
-        return $resarr;
-    }
-
 
 
 }

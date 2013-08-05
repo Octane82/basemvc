@@ -29,16 +29,13 @@ class TestController extends BaseController{
     }
 
 
-    public function post($price){
-
-        if(isset($price)){
-            $post = new Post();
-            $data = $post->printpost($price);
-        }
+    public function post(){
+        $post = new Post();
+        $data = $post->printpost();
 
         $this->render('post', array('data'=>$data));
 
-        var_dump($_POST);
+     //   var_dump($_POST);
     }
 
 
