@@ -3,7 +3,13 @@
 
 class HTML{
 
-    //mixed $action='', string $method='post', array $htmlOptions=array ( ))
+    /**
+     * Метод генерирует тег <form> с параметрами
+     * @param string $action
+     * @param string $method
+     * @param array $htmlOptions
+     * @return string
+     */
     public static function beginForm($action = '', $method = 'post', $htmlOptions = array()){
         $params = '';
         foreach($htmlOptions as $key=>$val){
@@ -15,12 +21,20 @@ class HTML{
             return '<form method = "'.$method.'" '.$params.'>';
     }
 
-
+    /**
+     * Метод генерирует закрывающий тег </form>
+     * @return string
+     */
     public static function endForm(){
         return "</form>";
     }
 
-    //string $label='submit', array $htmlOptions=array ( )
+    /**
+     * Метод генерирует кнопку отправки submit button
+     * @param string $label
+     * @param array $htmlOptions
+     * @return string
+     */
     public static function submitButton($label = 'submit', $htmlOptions = array()){
         $params = '';
         foreach($htmlOptions as $key=>$val){
@@ -29,7 +43,13 @@ class HTML{
         return '<input type="submit" value="'.$label.'" '.$params.'>';
     }
 
-    //link(string $text, mixed $url='#', array $htmlOptions=array ( ))
+    /**
+     * Метод генерирует ссылку
+     * @param $text
+     * @param string $url
+     * @param array $htmlOptions
+     * @return string
+     */
     public static function link($text, $url='', $htmlOptions = array()){
         $params = '';
         foreach($htmlOptions as $key=>$val){
@@ -38,7 +58,13 @@ class HTML{
         return '<a href="'.$url.'" '.$params.'>'.$text.'</a>';
     }
 
-    //textField(string $name, string $value='', array $htmlOptions=array ( ))
+    /**
+     * Метод генерирует текстовое поле
+     * @param $name
+     * @param string $value
+     * @param array $htmlOptions
+     * @return string
+     */
     public static function textField($name, $value='', $htmlOptions = array()){
         $params = '';
         foreach($htmlOptions as $key=>$val){
@@ -50,8 +76,13 @@ class HTML{
             return '<input type="text" name="'.$name.'" '.$params.'>';
     }
 
-    //rows="10" cols="45"
-    //textArea(string $name, string $value='', array $htmlOptions=array ( 'rows'=>10, 'cols'=>45))
+    /**
+     * Метод генерирует текстовую область
+     * @param $name
+     * @param string $value
+     * @param array $htmlOptions
+     * @return string
+     */
     public static function textArea($name, $value='', $htmlOptions = array()){
         $params = '';
         foreach($htmlOptions as $key=>$val){
@@ -63,8 +94,14 @@ class HTML{
             return '<textarea '.$params.' type="text" name="'.$name.'"></textarea>';
     }
 
-    // <input type="radio" name="browser" value="ie"> Internet Explorer<Br>
-    //checkBox(string $name, boolean $checked=false, array $htmlOptions=array ( )
+
+    /**
+     * Метод генерирует чекбокс
+     * @param $name
+     * @param bool $checked
+     * @param array $htmlOptions
+     * @return string
+     */
     public static function checkBox($name, $checked = false, $htmlOptions = array()){
         $params = '';
         foreach($htmlOptions as $key=>$val){
@@ -76,9 +113,14 @@ class HTML{
             return ' <input type="checkbox" name="'.$name.'" '.$params.'>';
     }
 
-    //CHtml::checkBoxList('Author[books][]', $selected_keys=array(), $books);
-    //checkBoxList(string $name, mixed $select, array $data, array $htmlOptions=array ( ))
-    //name -- checkbox list  $select = id выбранных полей с 0 (если false или пустой массив то нет выбранных полей)	$data -(массив лейблов checkbox)
+    /**
+     * Метод генерирует список чекбоксов
+     * @param $name
+     * @param array $select     id выбранных полей с 0 (если false или пустой массив то нет выбранных полей)
+     * @param array $data       (массив лейблов checkbox)
+     * @param array $htmlOptions
+     * @return string
+     */
     public static function checkBoxList($name, $select=array(), $data = array(), $htmlOptions = array()){
         $params = '';
         foreach($htmlOptions as $key=>$val){
@@ -102,8 +144,13 @@ class HTML{
     }
 
 
-
-    //radioButton(string $name, boolean $checked=false, array $htmlOptions=array ( )
+    /**
+     * Метод генерирует радио кнопку
+     * @param $name
+     * @param bool $checked
+     * @param array $htmlOptions
+     * @return string
+     */
     public static function radioButton($name, $checked = false, $htmlOptions = array()){
         $params = '';
         foreach($htmlOptions as $key=>$val){
@@ -116,9 +163,14 @@ class HTML{
     }
 
 
-
-    //radioButtonList(string $name, mixed $select, array $data, array $htmlOptions=array ( ))
-    //name -- radio list  $select = id выбранных полей с 0 (если false или пустой массив то нет выбранных полей)	$data -(массив лейблов checkbox)
+    /**
+     * Метод генерирует список радио кнопок
+     * @param $name
+     * @param array $select     id выбранных полей с 0 (если false или пустой массив то нет выбранных полей)
+     * @param array $data       (массив лейблов checkbox)
+     * @param array $htmlOptions
+     * @return string
+     */
     public static function radioButtonList($name, $select=array(), $data = array(), $htmlOptions = array()){
         $params = '';
         foreach($htmlOptions as $key=>$val){
@@ -141,10 +193,14 @@ class HTML{
         return $htmldata;
     }
 
-
-
-
-    //dropDownList(string $name, string $select, array $data, array $htmlOptions=array ( ))
+    /**
+     * Метод генерирует выпадающее меню
+     * @param $name
+     * @param $select
+     * @param array $data
+     * @param array $htmlOptions
+     * @return string
+     */
     public static function dropDownList($name, $select, $data = array(), $htmlOptions = array()){
         $params = '';
         foreach($htmlOptions as $key=>$val){
@@ -161,7 +217,13 @@ class HTML{
         return $htmldata;
     }
 
-    //string fileField(string $name, string $value='', array $htmlOptions=array ( ))
+    /**
+     * Метод генерирует поле, для загрузки файлов
+     * @param $name
+     * @param string $value
+     * @param array $htmlOptions
+     * @return string
+     */
     public static function fileField($name, $value='', $htmlOptions = array()){
         $params = '';
         foreach($htmlOptions as $key=>$val){
@@ -174,7 +236,13 @@ class HTML{
     }
 
 
-    //hiddenField(string $name, string $value='', array $htmlOptions=array ( ))
+    /**
+     * Метод генерирует скрытое поле
+     * @param $name
+     * @param string $value
+     * @param array $htmlOptions
+     * @return string
+     */
     public static function hiddenField($name, $value='', $htmlOptions = array()){
         $params = '';
         foreach($htmlOptions as $key=>$val){
@@ -186,8 +254,13 @@ class HTML{
             return '<input type="hidden" name="'.$name.'" '.$params.'>';
     }
 
-
-    //image(string $src, string $alt='', array $htmlOptions=array ( ))
+    /**
+     * Метод генерирует ссылку на изображение
+     * @param $src
+     * @param string $alt
+     * @param array $htmlOptions
+     * @return string
+     */
     public static function image($src, $alt='', $htmlOptions = array()){
         $params = '';
         foreach($htmlOptions as $key=>$val){
@@ -199,8 +272,13 @@ class HTML{
             return '<img src="'.$src.'" '.$params.'>';
     }
 
-
-    //passwordField(string $name, string $value='', array $htmlOptions=array ( ))
+    /**
+     * Метод генерирует поле для ввода пароля
+     * @param $name
+     * @param string $value
+     * @param array $htmlOptions
+     * @return string
+     */
     public static function passwordField($name, $value='', $htmlOptions = array()){
         $params = '';
         foreach($htmlOptions as $key=>$val){
@@ -212,8 +290,12 @@ class HTML{
             return '<input type="password" name="'.$name.'" '.$params.'>';
     }
 
-
-    //button(string $label='button', array $htmlOptions=array ( ))
+    /**
+     * Метод генерирует кнопку
+     * @param string $label
+     * @param array $htmlOptions
+     * @return string
+     */
     public static function button($label = 'button', $htmlOptions = array()){
         $params = '';
         foreach($htmlOptions as $key=>$val){
@@ -222,17 +304,23 @@ class HTML{
         return '<button '.$params.'>'.$label.'</button>';
     }
 
-    //Encodes special characters into HTML entities.
+    /**
+     * Метод преобразует специальные символы в html сущности
+     * @param $text
+     * @return string
+     */
     public static function encode($text){
         return htmlspecialchars($text, ENT_QUOTES);
     }
 
-    //Decodes special HTML entities back to the corresponding characters
+    /**
+     * Метод преобразет текст с html сущностями в текст (обратно encode)
+     * @param $text
+     * @return string
+     */
     public static function decode($text){
         return htmlspecialchars_decode($text, ENT_QUOTES);
     }
-
-
 
 }
 

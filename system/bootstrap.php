@@ -17,15 +17,18 @@ require_once SITE_PATH.'system/core/BaseModel.php';
 //require_once SITE_PATH.'system/lib/DB.php';                   //можно явно подключить библиотеку работы с БД, или (см. ниже)
 
 
-//Автозагрузка классов
-set_include_path(get_include_path()                          //Функция несколько путей для include (замена базовой дирректории)
+//Пути для подключения файлов скриптов
+ set_include_path(get_include_path()                          //Функция несколько путей для include (замена базовой дирректории)
         .PATH_SEPARATOR.SITE_PATH.'application/models'
         .PATH_SEPARATOR.SITE_PATH.'system/lib');
-    //    .PATH_SEPARATOR.'application/views');
 
-function __autoload($class){                                //TODO: заменить на spl_autoload_register
-        require_once $class.'.php';
+//Автозагрузка классов
+function customAutoload($class){
+    require_once $class.'.php';
 }
+
+//Регистрация своего автозагрузчика
+spl_autoload_register('customAutoload');
 
 
 try{
