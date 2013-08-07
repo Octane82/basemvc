@@ -18,8 +18,12 @@ abstract class BaseController{
 	}
 	
 
-
-    // получить отренедеренный шаблон с параметрами $params
+    /**
+     * получить отренедеренный шаблон с параметрами $params
+     * @param $template
+     * @param array $params
+     * @return string
+     */
     function fetchPartial($template, $params = array()){
         $idController = Application::getInstance()->controller();   //текущий контроллер
         extract($params);
@@ -28,7 +32,13 @@ abstract class BaseController{
         return ob_get_clean();
     }
 
-    // получить отренедеренный шаблон с параметрами $params для fetch()
+
+    /**
+     * получить отренедеренный шаблон с параметрами $params для fetch()
+     * @param $template
+     * @param array $params
+     * @return string
+     */
     function getLayoutFile($template, $params = array()){
         extract($params);
         ob_start();
@@ -37,26 +47,47 @@ abstract class BaseController{
     }
 
 
-    // вывести отренедеренный шаблон с параметрами $params
+    /**
+     * вывести отренедеренный шаблон с параметрами $params
+     * @param $template
+     * @param array $params
+     */
     function renderPartial($template, $params = array()){
         echo $this->fetchPartial($template, $params);
     }
 
 
-    // получить отренедеренный в переменную $content layout-а
-    // шаблон с параметрами $params
+    /**
+     * получить отренедеренный в переменную $content layout-а
+     *  шаблон с параметрами $params
+     * @param $template
+     * @param array $params
+     * @return string
+     */
     function fetch($template, $params = array()){
         $content = $this->fetchPartial($template, $params);
         return $this->getLayoutFile('layouts/'.$this->layout, array('content' => $content));
     }
 
 
-    // вывести отренедеренный в переменную $content layout-а
-    // шаблон с параметрами $params
+    /**
+     * вывести отренедеренный в переменную $content layout-а
+     *  шаблон с параметрами $params
+     * @param $template
+     * @param array $params
+     */
     function render($template, $params = array()){
         echo $this->fetch($template, $params);
     }
 
+    /**
+     * Метод перенаправляет на другую страницу
+     * @param string $path      путь 'controller/action'
+     */
+    function redirect($path = ''){
+        $hostname = $_SERVER['HTTP_HOST'];
+        header("Location: http://$hostname/$path");
+    }
 
 
 }

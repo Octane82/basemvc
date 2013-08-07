@@ -26,7 +26,12 @@ class Request{
                 //Значение параметра
                 $values[] = $parts[$i];
             }
-            $this->_args = array_combine($keys, $values);
+            //если существуют параметр и значения, создаём assoc массив
+            if(!empty($keys) && !empty($values)){
+                $this->_args = array_combine($keys, $values);
+            }else
+                throw new Exception('404 Wrong request');               //TODO: сделать вывод в шаблон
+
         }else
             $this->_args = array();
     }

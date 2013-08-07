@@ -10,7 +10,6 @@ require_once SITE_PATH.'system/core/Router.php';
 require_once SITE_PATH.'system/core/Application.php';
 
 require_once SITE_PATH.'system/core/BaseController.php';
-require_once SITE_PATH.'system/core/ErrorController.php';
 require_once SITE_PATH.'system/core/BaseModel.php';
 
 
@@ -34,8 +33,9 @@ spl_autoload_register('customAutoload');
 try{
     Router::route(new Request());
 }catch (Exception $e){
-    $controller = new ErrorController();
-    $controller->error($e->getMessage());
+    $host = $_SERVER['HTTP_HOST'];
+    $errMsg = $e->getMessage();
+    header("Location: http://$host/error/index/error/$errMsg");     //перенаправляем на контроллер ошибок
 }
 
 

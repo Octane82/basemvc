@@ -8,7 +8,6 @@ class Application{
      * Приложение служит в качестве глобального контекста
      */
 
-
     private static $_instance;
 
     private function __construct(){}

@@ -29,14 +29,32 @@ class TestController extends BaseController{
     }
 
 
-    public function post(){
+    /**
+     * TODO: написать вывод ошибки в случае отсутсвия параметров функции в запросе
+     * @param $price
+     */
+    public function post($price){
         $post = new Post();
-        $data = $post->printpost();
+        $data = $post->printpost($price);
 
         $this->render('post', array('data'=>$data));
-
      //   var_dump($_POST);
     }
+
+
+    /**
+     * Проверка получения данных методом POST из вида
+     */
+    public function request(){
+        if(isset($_POST)){
+            $msg = 'Post пришёл';
+            $datapost = $_POST['testpost'];
+        }
+        $this->redirect('test/post/price/1500');
+
+        $this->render('request', array('msg'=>$msg, 'datapost'=>$datapost));
+    }
+
 
 
 

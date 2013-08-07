@@ -4,8 +4,8 @@
 class Post extends BaseModel{
 
 
-    public function printpost(){
-       $price = 100;
+    public function printpost($price){
+      // $price = 100;
        $resarr = DB::getInstance()->db()->createCommand()
                                 ->select('name, description, price')
                                 ->from('product')
