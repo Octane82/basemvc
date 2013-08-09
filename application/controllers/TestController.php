@@ -50,7 +50,9 @@ class TestController extends BaseController{
             $msg = 'Post пришёл';
             $datapost = $_POST['testpost'];
         }
-        $this->redirect('test/post/price/1500');
+      //  $this->redirect('test/post/price/1500');
+        $obj = new Post();
+        $obj->change();
 
         $this->render('request', array('msg'=>$msg, 'datapost'=>$datapost));
     }

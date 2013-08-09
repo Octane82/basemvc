@@ -170,12 +170,8 @@ class DB{
      * @param array $columns    массив колонок и значений
      */
     function insert($table, $columns = array()){
-        foreach($columns as $key=>$val){
-            $strColumns .= $key.', ';
-            $bindValues .= ':'.$key.', ';
-        }
-        $strColumns = rtrim($strColumns, ", ");
-        $bindValues = rtrim($bindValues, ", ");
+        $strColumns = implode(', ', array_keys($columns));
+        $bindValues = ':'.implode(', :', array_keys($columns));
         $statement = $this->connection->prepare('INSERT INTO '.$table.' ('.$strColumns.') VALUES ('.$bindValues.')');	//подготовка запроса
         $statement->execute($columns);
     }
@@ -212,7 +208,6 @@ class DB{
         $statement = $this->connection->prepare('DELETE FROM '.$table.' WHERE '.$conditions);
         $statement->execute($params);
     }
-
 
     /**
      * @return string   текст SQL запроса

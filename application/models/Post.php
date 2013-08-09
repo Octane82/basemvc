@@ -16,4 +16,12 @@ class Post extends BaseModel{
     }
 
 
+    public function change(){
+       // DB::getInstance()->db()->createCommand()
+       //     ->delete('product', 'id = :id', array('id'=>34));
+
+
+    }
+
+
 }
